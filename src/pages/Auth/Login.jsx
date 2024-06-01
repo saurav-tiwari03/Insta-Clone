@@ -1,7 +1,7 @@
 import authImg from './../../assets/AuthImages/authImg.png';
+import logo from './../../assets/AuthImages/insta.png';
 import playstore from './../../assets/AuthImages/googlePlay.png';
 import microstore from './../../assets/AuthImages/microStore.png';
-import logo from './../../assets/AuthImages/insta.png';
 import { FaFacebookSquare } from "react-icons/fa";
 
 

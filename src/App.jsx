@@ -5,7 +5,7 @@ import {Login} from './pages/Auth/Login'
 import {Signup} from './pages/Auth/Signup'
 
 export default function App() {
-  const authStatus = false
+  const authStatus = true
   return (
     <>
       <div className=''>
