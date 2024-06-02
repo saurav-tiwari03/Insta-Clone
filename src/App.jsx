@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { Login } from './pages/Auth/Login';
-import { Signup } from './pages/Auth/SignUp';
+import { Signup } from './pages/Auth/Signup';
 import { Search } from './pages/Search/Search';
 import { User } from './pages/User/User';
 import { Loader } from './components/Loader';

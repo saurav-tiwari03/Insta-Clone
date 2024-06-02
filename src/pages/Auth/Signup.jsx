@@ -5,7 +5,7 @@ import { Spinner } from '../../components/Loader.jsx';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
-import {useSignup}  from './../../hooks/useSignup.js';
+import {useSignup}  from '../../hooks/useSignup.js';
 
 export const Signup = () => {
   const [inputs, setInputs] = useState({
