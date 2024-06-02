@@ -1,13 +1,30 @@
 import logo from './../../assets/AuthImages/insta.png';
 import playstore from './../../assets/AuthImages/googlePlay.png';
 import microstore from './../../assets/AuthImages/microStore.png';
-
-import {Link} from 'react-router-dom'
+import { Spinner } from '../../components/Loader.jsx';
+import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { FaFacebookSquare } from 'react-icons/fa';
+import {useSignup}  from './../../hooks/useSignup.js';
 
 export const Signup = () => {
-  const [showPassword,setShowPassword] = useState(false)
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+    fullName: '',
+    userName: '',
+  });
+  const [spinStatus,setSpinStatus] = useState();
+  const {signup} = useSignup();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const signUpHandler = () => {
+    setSpinStatus(!spinStatus);
+    console.log(inputs)
+    signup(inputs)
+    setSpinStatus(!spinStatus);
+  }
+
   return (
     <div className="mt-8">
       {/*Main div */}
@@ -22,15 +39,15 @@ export const Signup = () => {
             </div>
           </div>
           <div className='flex flex-col items-center justify-center'>
-            <input className='w-[250px] h-[35px] pl-2 mb-1 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs' type="text" placeholder='Email'/>
-            <input className='w-[250px] h-[35px] pl-2 mb-1 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs' type="text" placeholder='Full Name'/>
-            <input className='w-[250px] h-[35px] pl-2 mb-1 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs' type="text" placeholder='Username'/>
+            <input className='w-[250px] h-[35px] pl-2 mb-1 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs' type="text" placeholder='Email' onChange={(e) => setInputs({...inputs, email: e.target.value})}/>
+            <input className='w-[250px] h-[35px] pl-2 mb-1 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs' type="text" placeholder='Full Name' onChange={(e) => setInputs({...inputs, fullName: e.target.value})}/>
+            <input className='w-[250px] h-[35px] pl-2 mb-1 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs' type="text" placeholder='Username' onChange={(e) => setInputs({...inputs, userName: e.target.value})}/>
             <div className='flex items-center relative'>
-              <input className='w-[250px] h-[35px] pl-2 mb-4 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs relative' type={`${showPassword ? 'text' : 'password'}`}  placeholder='Password'/>
+              <input className='w-[250px] h-[35px] pl-2 mb-4 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs relative' type={`${showPassword ? 'text' : 'password'}`} placeholder='Password' onChange={(e) => setInputs({...inputs, password: e.target.value})}/>
               <button className='absolute right-2 pb-3' onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'Hide' : 'Show'}</button>
             </div>
           </div>
-          <button className='bg-[#4cb5f9] text-white rounded w-[250px] h-[35px] mb-8'>Sign up</button>
+          <button className='bg-[#4cb5f9] text-white rounded w-[250px] h-[35px] mb-8 flex items-center justify-center' onClick={signUpHandler}>{spinStatus ? <Spinner /> : 'Sign Up'}</button>
         </div>
         {/*2nd Div */}
         <div className='w-[325px] border-2 px-8 py-4 text-[14px] flex items-center justify-center'>
@@ -42,7 +59,7 @@ export const Signup = () => {
         </div>
         {/*3rd Div */}
         <p>Get the app.</p>
-        <div className='flex items-center justify-center  p-4 gap-4' >
+        <div className='flex items-center justify-center p-4 gap-4'>
           <a href="https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN" target='_blank'>
             <img src={playstore} width={111} alt="playstore img" />
           </a>
@@ -52,5 +69,5 @@ export const Signup = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

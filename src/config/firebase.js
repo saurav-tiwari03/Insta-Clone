@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA2u-WLIpILmtPenwxe1_WreBR_0WwwTsM",
@@ -7,8 +10,12 @@ const firebaseConfig = {
   storageBucket: "instagram-clone-bd45e.appspot.com",
   messagingSenderId: "1061140838447",
   appId: "1:1061140838447:web:63081792b8026d2197eeda",
-  measurementId: "G-KTKB2R74YS"
+  measurementId: "G-KTKB2R74YS",
 };
 
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestore = getFirestore(app);
+const storage = getStorage(app);
+
+export { app, auth, firestore, storage };
