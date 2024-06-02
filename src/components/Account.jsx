@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Profile from './../assets/Homeimg/profile.jpg'
 import { Link } from 'react-router-dom'
 import { useLogout } from "../hooks/useLogout";
@@ -7,8 +8,6 @@ import { useState } from 'react';
 export const Account = () => {
   const {logout} = useLogout();
   const user = JSON.parse(localStorage.getItem('insta-user'))
-  console.log(user)
-  console.log(user.fullName)
   const [userName,setUserName] = useState(user.userName)
   const [fullName,setFullName] = useState(user.fullName)
   return (

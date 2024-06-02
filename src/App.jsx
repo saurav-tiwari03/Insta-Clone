@@ -51,7 +51,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={authStatus ? <Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={authStatus ? <Navigate to='/' /> : <Login />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route path='/signup' element={authStatus ? <Navigate to='/' /> : <Signup />} />
         <Route path='/search' element={<Search />} />
         <Route path='/:id' element={<User />} />
       </Routes>
