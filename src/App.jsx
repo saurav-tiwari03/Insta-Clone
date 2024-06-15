@@ -13,6 +13,7 @@ import { doc, getDoc } from 'firebase/firestore';
 
 export default function App() {
   const [authStatus, setAuthStatus] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const getUserData = async (uid) => {
     try {
@@ -20,14 +21,13 @@ export default function App() {
       const userData = await getDoc(userDocRef);
       if (userData.exists()) {
         const data = userData.data();
-        return data
+        localStorage.setItem('insta-user', JSON.stringify(data));
+        setUserData(data);
       } else {
         console.log('User does not exist');
-        return null;
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
-      return null;
     }
   };
 
@@ -35,8 +35,12 @@ export default function App() {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         await getUserData(user.uid);
+        setAuthStatus(true);
+      } else {
+        setAuthStatus(false);
+        localStorage.removeItem('insta-user');
+        setUserData(null);
       }
-      setAuthStatus(user ? true : false);
     });
 
     return () => unsubscribe();
@@ -49,11 +53,11 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={authStatus ? <Home /> : <Navigate to='/login' />} />
+        <Route path='/' element={authStatus ? <Home userName={userData.userName} /> : <Navigate to='/login' />} />
         <Route path='/login' element={authStatus ? <Navigate to='/' /> : <Login />} />
         <Route path='/signup' element={authStatus ? <Navigate to='/' /> : <Signup />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/:id' element={<User />} />
+        <Route path='/:id' element={<User userData={userData} />} />
       </Routes>
     </div>
   );

@@ -1,30 +1,41 @@
-/* eslint-disable no-unused-vars */
-import Profile from './../assets/Homeimg/profile.jpg'
-import { Link } from 'react-router-dom'
+// import Profile from './../assets/Homeimg/profile.jpg';
+import userimg from './../assets/userimg.png'
+import { Link } from 'react-router-dom';
 import { useLogout } from "../hooks/useLogout";
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 
 export const Account = () => {
-  const {logout} = useLogout();
-  const user = JSON.parse(localStorage.getItem('insta-user'))
-  const [userName,setUserName] = useState(user.userName)
-  const [fullName,setFullName] = useState(user.fullName)
+  const { logout } = useLogout();
+  const user = JSON.parse(localStorage.getItem('insta-user'));
+
+  const [userName, setUserName] = useState('');
+  const [fullName, setFullName] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      setUserName(user.userName);
+      setFullName(user.fullName);
+    }
+  }, [user]);
+
+  if (!user) {
+    return <div className='text-white'>
+      <button onClick={logout}>Sign out</button>
+    </div>;
+  }
+
   return (
     <div className='text-white flex items-center'>
-      {/*Image Div*/}
       <div>
-        <img className='w-[50px] rounded-full' src={Profile} alt="" />
+        <img className='w-[50px] rounded-full' src={userimg} alt="" />
       </div>
-      {/*UserName Div*/}
       <div>
         <Link to={`/${userName}`}>{userName}</Link>
         <p className='text-[#929292]'>{fullName}</p>
       </div>
-      {/*Logout div */}
       <div className='flex items-start justify-end'>
         <button className='text-blue-400' onClick={logout}>Log out</button>
       </div>
     </div>
-  )
-}
+  );
+};

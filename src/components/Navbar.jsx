@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 
 
-export const Navbar = () => {
+export const Navbar = ({userName}) => {
   const {logout} = useLogout();
   return (
     <div className="mt-4">
@@ -31,7 +31,7 @@ export const Navbar = () => {
           <div className=""><Link to='/messages' className="flex items-center justify-start hover:bg-[#1a1a1a] pl-2 md:pl-4 md:pr-6 py-2 rounded w-[40px] md:w-[200px] gap-2"><FaFacebookMessenger /><p className="hidden md:flex">Messages</p></Link></div>
           <div className=""><Link to='/notfications' className="flex items-center justify-start hover:bg-[#1a1a1a] pl-2 md:pl-4 md:pr-6 py-2 rounded w-[40px] md:w-[200px] gap-2"><FaRegHeart /><p className="md:flex hidden">Notification</p></Link></div>
           <div className=""><button className="flex items-center justify-start hover:bg-[#1a1a1a] pl-2 md:pl-4 md:pr-6 py-2 rounded w-[40px] md:w-[200px] gap-2"><FaRegPlusSquare /><p className="md:flex hidden">Create</p></button></div>
-          <div className=""><Link to='/:id' className="flex items-center justify-start hover:bg-[#1a1a1a] pl-2 md:pl-4 md:pr-6 py-2 rounded w-[40px] md:w-[200px] gap-2"><FaRegUserCircle /><p className="md:flex hidden">Profile</p></Link></div>
+          <div className=""><Link to={`/${userName}`} className="flex items-center justify-start hover:bg-[#1a1a1a] pl-2 md:pl-4 md:pr-6 py-2 rounded w-[40px] md:w-[200px] gap-2"><FaRegUserCircle /><p className="md:flex hidden">Profile</p></Link></div>
         </div>
         {/*Logout */}
         <div className="ml-6 text-lg absolute bottom-10 left-0">
