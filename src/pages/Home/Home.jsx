@@ -9,7 +9,7 @@ export const Home = ({userName}) => {
   console.log(userName)
   return (
   <>
-    <div className="text-black bg-[#000] h-screen flex">
+    <div className="text-black bg-[#000] h-screen flex w-full">
       {/*Left side Div */}
       <div className='flex items-start w-[12vh] md:w-[35vh]'>
         <Navbar userName={userName}/>
@@ -20,7 +20,7 @@ export const Home = ({userName}) => {
         <Feedposts />
       </div>
       {/*Right Div */}
-      <div className='flex items-start justify-end'>
+      <div className='flex items-start justify-end w-[50%]'>
         <Account />
       </div>
     </div>

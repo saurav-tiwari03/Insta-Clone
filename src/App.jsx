@@ -5,6 +5,9 @@ import { Login } from './pages/Auth/Login';
 import { Signup } from './pages/Auth/Signup';
 import { Search } from './pages/Search/Search';
 import { User } from './pages/User/User';
+import Message from './pages/Messages/Message'
+import Notifications  from './pages/Notifications/Notications'
+import Reels from './pages/Reels/Reels'
 import { Loader } from './components/Loader';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, firestore } from './config/firebase';
@@ -57,6 +60,9 @@ export default function App() {
         <Route path='/login' element={authStatus ? <Navigate to='/' /> : <Login />} />
         <Route path='/signup' element={authStatus ? <Navigate to='/' /> : <Signup />} />
         <Route path='/search' element={<Search />} />
+        <Route path='/reels' element={<Reels />} />
+        <Route path='/messages' element={<Message />} />
+        <Route path='/notifications' element={<Notifications />} />
         <Route path='/:id' element={<User userData={userData} />} />
       </Routes>
     </div>

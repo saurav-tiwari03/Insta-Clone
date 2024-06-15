@@ -4,8 +4,8 @@ export const Feedposts = () => {
     <div className="text-white">
       <PostHeader />
         <img src="" alt="" />
-        <p className="text-white">hello world</p>
-      <PostFooter />
+        <p className="text-red-500">Nothing to Show</p>
+        <PostFooter />
     </div>
   )
 }
@@ -15,8 +15,8 @@ const PostHeader = () => {
     <>
       <div>
         <p>
-          _.nobita.x
-          <span> - 1w</span>
+          
+          <span> </span>
         </p>
       </div>
     </>
