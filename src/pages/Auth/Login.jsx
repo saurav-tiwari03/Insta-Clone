@@ -19,6 +19,7 @@ export const Login = () => {
   const [spinStatus, setSpinStatus] = useState(false);
   const { login, loading, error } = useLogin();
   const [user,setUser] = useState();
+  const [showPassword,setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const authHandler = async () => {
@@ -56,12 +57,15 @@ export const Login = () => {
                   placeholder='Email'
                   onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
                 />
-                <input
-                  className='w-[250px] h-[35px] pl-2 mb-4 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs'
-                  type='text'
-                  placeholder='Password'
-                  onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-                />
+                <div className='flex relative'>
+                  <input
+                    className='w-[250px]  h-[35px] pl-2 mb-4 rounded outline-[#8e8e8e] bg-[#f4f4f4] border-[2px] text-xs'
+                    type={`${showPassword ? 'text' : 'password'}`}
+                    placeholder='Password'
+                    onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+                  />
+                  <button className='absolute right-2 top-1'  onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'Hide' : 'Show'}</button>
+                </div>
                 <button
                   onClick={authHandler}
                   className='flex items-center justify-center bg-[#4cb5f9] text-white font-semibold w-[250px] rounded-md py-1'
